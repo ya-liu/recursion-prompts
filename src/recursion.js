@@ -42,6 +42,25 @@ var sum = function(array) {
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+  if (array === undefined || array.length === 0) {
+    return 0;
+  }
+
+  var acc = [];
+
+  function flatDeep(arr, d = 1) {
+    return d > 0 ? arr.reduce((acc, val) => acc.concat(Array.isArray(val) ? flatDeep(val, d - 1) : val), [])
+                 : arr.slice();
+ };
+ acc = flatDeep(array, Infinity);
+
+  var first = acc[0];
+  if (acc.length === 1) {
+    return first;
+  } else {
+    return first + arraySum(acc.slice(1));
+  }
+
 };
 
 // 4. Check if a number is even.
