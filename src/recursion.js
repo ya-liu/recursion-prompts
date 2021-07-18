@@ -169,7 +169,7 @@ var palindrome = function(string) {
     return false;
   }
 
-  if (string == "" || string.length == 1) {
+  if (string === "" || string.length === 1) {
     return true;
   }
 
