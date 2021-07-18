@@ -80,18 +80,28 @@ var isEven = function(n) {
 var sumBelow = function(n) {
   if (n === 0 || Math.abs(n) === 1) {
     return 0;
-  }
-  if (n > 0) {
+  } else if (n > 0) {
     return n - 1 + sumBelow(n - 1);
   } else {
     return -(Math.abs(n) - 1 + sumBelow(Math.abs(n) - 1));
   }
-
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+  var result = [];
+  if (x === y || x - y === 1 || x - y === -1) {
+    return [];
+  }
+
+  if (x < y) {
+    result = range(x, y - 1).concat(y - 1);
+  } else if (x > y) {
+    result = range(x, y + 1).concat(y + 1);
+  }
+
+  return result;
 };
 
 // 7. Compute the exponent of a number.
