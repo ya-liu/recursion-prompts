@@ -117,11 +117,19 @@ var exponent = function(base, exp) {
   var result = 1;
 
   if (exp > 0) {
-    exp % 2 === 0 ? result = exponent(base, exp / 2) * exponent(base, exp / 2) :
-                    result = base * exponent(base, exp - 1);
+    if (exp % 2 === 0) {
+      var y = exponent(base, exp / 2);
+      result = y * y;
+    } else {
+      result = base * exponent(base, exp - 1);
+    }
   } else {
-    (-exp) % 2 === 0 ? result = 1 / (exponent(base, (-exp) / 2) * exponent(base, (-exp) / 2)) :
-                       result = 1 / (base * exponent(base, (-exp) - 1));
+    if ((-exp) % 2 === 0) {
+      y = exponent(base, (-exp) / 2);
+      result = 1 / (y * y);
+    } else {
+      result = 1 / (base * exponent(base, (-exp) - 1));
+    }
   }
   return result;
 };
